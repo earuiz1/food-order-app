@@ -1,0 +1,59 @@
+.meal{
+    display: flex;
+    flex-direction: row;
+    min-width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.meal-main{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.meal-main h3{
+    color: #fff;
+}
+
+.meal-desc{
+    color: #fff;
+    font-style: italic;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /*No of lines after which the ellipsis needs to be added*/
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.meal-price{
+    color: rgb(193, 40, 40);
+    font-weight:bold;
+}
+.meal-action{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.meal-input label{
+    margin-right:0.5rem;
+    color: #fff;
+    font-weight: bold;
+}
+
+.meal-input input{
+    width: 2.5rem;
+    border-radius: 5px;
+}
+
+.meal-action button{
+    width: 100%;
+    padding: 0.3rem 0 0.3rem;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    background-color: #084e9d;
+    color: #fff;
+    cursor: pointer;
+}

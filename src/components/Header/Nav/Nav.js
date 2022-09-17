@@ -16,7 +16,7 @@ function Nav() {
         <div className="nav-body">
           <div className="nav-cart">
             <BsFillCartFill size={18} />
-            <span>Your Cart</span>
+            <span>Cart</span>
           </div>
           <div className="nav-item-counter">
             <span>1</span>

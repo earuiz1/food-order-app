@@ -1,0 +1,11 @@
+.food-list-container{
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    background-color: rgba(0, 0, 0, 0.796);
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1rem;
+    border-radius: 12px;
+    gap: 20px;
+  }
