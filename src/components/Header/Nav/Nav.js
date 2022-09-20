@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 
 import NavButton from "./NavButton";
 
 import { MdFastfood } from "react-icons/md";
 import "./Nav.css";
 
-function Nav() {
+function Nav(props) {
   return (
     <React.Fragment>
       <div className="nav-container">
@@ -14,7 +14,7 @@ function Nav() {
           <h1>Food Order App</h1>
         </div>
         <div className="nav-body">
-          <NavButton />
+          <NavButton meals={props.meals} totalOfItems={props.totalOfItems} />
         </div>
       </div>
     </React.Fragment>

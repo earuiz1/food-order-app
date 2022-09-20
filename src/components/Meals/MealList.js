@@ -1,7 +1,7 @@
 import React from "react";
 
 import MealItem from "./MealItem";
-import "./FoodList.css";
+import "./MealList.css";
 
 function FoodList(props) {
   const saveMealInfo = (amount, id) => {

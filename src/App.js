@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Header from "./components/Header/Header";
-import FoodList from "./components/FoodList";
+import MealList from "./components/Meals/MealList";
 
 import { v4 as uuid } from "uuid";
 
@@ -39,8 +39,8 @@ function App() {
 
   return (
     <React.Fragment>
-      <Header />
-      <FoodList meals={meals} onSaveMealInfo={saveMealInfo} />
+      <Header meals={meals} totalOfItems={totalOfItems} />
+      <MealList meals={meals} onSaveMealInfo={saveMealInfo} />
     </React.Fragment>
   );
 }
