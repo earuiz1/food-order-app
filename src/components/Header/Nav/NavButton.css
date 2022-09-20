@@ -1,0 +1,31 @@
+.navBtn-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 1rem 0 1rem 0;
+    border: none;
+    outline: none;
+    background-color: rgba(0, 0, 0, 0.331);
+}
+
+.navBtn-cart{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #fff;
+}
+
+.navBtn-counter{
+    background-color: rgba(0, 221, 255, 0.118);
+    padding: 0.3rem 0.6rem 0.3rem 0.6rem;
+    border-radius: 6px;
+    color: #fff;  
+}
+
+.navBtn-counter span{
+    color: #fff;  
+    font-weight: bold;
+}

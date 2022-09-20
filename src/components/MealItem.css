@@ -18,6 +18,7 @@
 
 .meal-desc{
     color: #fff;
+    font-size: 14px;
     font-style: italic;
     display: -webkit-box;
     -webkit-line-clamp: 1; /*No of lines after which the ellipsis needs to be added*/

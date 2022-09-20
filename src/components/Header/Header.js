@@ -5,7 +5,7 @@ import "./Header.css";
 
 function Header() {
   return (
-    <div>
+    <header>
       <Nav />
       <div className="img-container">
         <img
@@ -13,7 +13,7 @@ function Header() {
           alt=""
         />
       </div>
-    </div>
+    </header>
   );
 }
 

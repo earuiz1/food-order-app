@@ -1,7 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "./MealItem.css";
 function MealItem(props) {
+  //Set a state to handle the amount of each meal
+  const [itemAmount, setItemAmount] = useState(1);
+
+  const changeHandler = (event) => {
+    setItemAmount(event.target.value);
+  };
+
+  const submitHandler = (event) => {
+    event.preventDefault();
+
+    //Lift up the data
+    props.onSaveMealInfo(itemAmount, props.id);
+
+    //Set Amount back to 1
+    setItemAmount(1);
+  };
+
   return (
     <React.Fragment>
       <div className="meal">
@@ -10,13 +27,20 @@ function MealItem(props) {
           <span className="meal-desc">{props.desc}</span>
           <span className="meal-price">${props.price}</span>
         </div>
-        <div className="meal-action">
-          <div className="meal-input">
-            <label>Amount:</label>
-            <input type="number" min="1" />
+        <form onSubmit={submitHandler}>
+          <div className="meal-action">
+            <div className="meal-input">
+              <label>Amount:</label>
+              <input
+                type="number"
+                min="1"
+                value={itemAmount}
+                onChange={changeHandler}
+              />
+            </div>
+            <button>Add</button>
           </div>
-          <button>Add</button>
-        </div>
+        </form>
       </div>
     </React.Fragment>
   );
