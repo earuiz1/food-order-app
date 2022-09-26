@@ -4,8 +4,8 @@ import MealItem from "./MealItem";
 import "./MealList.css";
 
 function FoodList(props) {
-  const saveMealInfo = (amount, id) => {
-    props.onSaveMealInfo(amount, id);
+  const saveMealInfo = (amount, id, name, price) => {
+    props.onSaveMealInfo(amount, id, name, price);
   };
   return (
     <div className="food-list-container">

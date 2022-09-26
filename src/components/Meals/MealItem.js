@@ -13,7 +13,7 @@ function MealItem(props) {
     event.preventDefault();
 
     //Lift up the data
-    props.onSaveMealInfo(itemAmount, props.id);
+    props.onSaveMealInfo(itemAmount, props.id, props.name, props.price);
 
     //Set Amount back to 1
     setItemAmount(1);

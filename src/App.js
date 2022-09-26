@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Header from "./components/Header/Header";
 import MealList from "./components/Meals/MealList";
+import Cart from "./components/UI/Cart";
 
 import { v4 as uuid } from "uuid";
 
@@ -29,6 +30,9 @@ function App() {
     },
   ]);
 
+  //State that handles if the modal cart is open or closed
+  const [isOpen, isSetOpen] = useState(false);
+
   //Set a state to handle the total amount of items
   const [totalOfItems, setTotalOfItems] = useState(0);
 
@@ -37,9 +41,24 @@ function App() {
     setTotalOfItems(+amount + totalOfItems);
   };
 
+  //Open Cart Handler
+  const openCartHandler = () => {
+    isSetOpen(true);
+  };
+
+  //Closed Cart Handler
+  const closedCartHandler = () => {
+    isSetOpen(false);
+  };
+
   return (
     <React.Fragment>
-      <Header meals={meals} totalOfItems={totalOfItems} />
+      {isOpen && <Cart onClose={closedCartHandler} />}
+      <Header
+        onOpen={openCartHandler}
+        meals={meals}
+        totalOfItems={totalOfItems}
+      />
       <MealList meals={meals} onSaveMealInfo={saveMealInfo} />
     </React.Fragment>
   );

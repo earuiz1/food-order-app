@@ -1,12 +1,12 @@
 import React from "react";
 
-import Modal from "../../Modal/Modal";
+import Modal from "./Modal";
 
 import "./Cart.css";
 
 function Cart(props) {
   return (
-    <Modal>
+    <Modal onClose={props.onClose}>
       <div className="cart-header">
         <h3>Cart Information</h3>
       </div>

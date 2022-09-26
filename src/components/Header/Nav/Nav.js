@@ -14,7 +14,11 @@ function Nav(props) {
           <h1>Food Order App</h1>
         </div>
         <div className="nav-body">
-          <NavButton meals={props.meals} totalOfItems={props.totalOfItems} />
+          <NavButton
+            onOpen={props.onOpen}
+            meals={props.meals}
+            totalOfItems={props.totalOfItems}
+          />
         </div>
       </div>
     </React.Fragment>
