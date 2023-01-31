@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import Nav from "./components/Nav/Nav";
+import HeaderMain from "./components/Header/HeaderMain";
+import MenuList from "./components/Menu/MenuList";
 
-function App() {
+const App = () => {
+  const meals = [
+    {
+      id: Math.random().toString(),
+      name: "Enchiladas Rojas",
+      price: "10.99",
+    },
+    {
+      id: Math.random().toString(),
+      name: "Enchiladas Verdes",
+      price: "11.99",
+    },
+    {
+      id: Math.random().toString(),
+      name: "Flautas de Carne",
+      price: "12.99",
+    },
+    {
+      id: Math.random().toString(),
+      name: "Flautas de Pollo",
+      price: "12.99",
+    },
+    {
+      id: Math.random().toString(),
+      name: "Nachos a la Mexicana",
+      price: "14.99",
+    },
+  ];
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Nav />
+      <HeaderMain />
+      <MenuList meals={meals} />
     </div>
   );
-}
+};
 
 export default App;
