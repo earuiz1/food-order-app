@@ -1,6 +1,8 @@
+import { useState } from "react";
 import Nav from "./components/Nav/Nav";
 import HeaderMain from "./components/Header/HeaderMain";
 import MenuList from "./components/Menu/MenuList";
+import Cart from "./components/Cart/Cart";
 
 const App = () => {
   const meals = [
@@ -30,9 +32,20 @@ const App = () => {
       price: "14.99",
     },
   ];
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
   return (
     <div>
-      <Nav />
+      {isModalOpen && <Cart onClose={closeModal} />}
+      <Nav onOpen={openModal} />
       <HeaderMain />
       <MenuList meals={meals} />
     </div>
