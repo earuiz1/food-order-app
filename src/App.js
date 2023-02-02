@@ -3,6 +3,7 @@ import Nav from "./components/Nav/Nav";
 import HeaderMain from "./components/Header/HeaderMain";
 import MenuList from "./components/Menu/MenuList";
 import Cart from "./components/Cart/Cart";
+import { CartProvider } from "./context/cartContext";
 
 const App = () => {
   const meals = [
@@ -43,12 +44,12 @@ const App = () => {
     setIsModalOpen(true);
   };
   return (
-    <div>
+    <CartProvider>
       {isModalOpen && <Cart onClose={closeModal} />}
       <Nav onOpen={openModal} />
       <HeaderMain />
       <MenuList meals={meals} />
-    </div>
+    </CartProvider>
   );
 };
 
