@@ -1,25 +1,28 @@
 import React, { useReducer } from "react";
 const initialState = {
   items: [],
-  totalAmount: 0,
+  totalPrice: 0,
 };
 const cartReducer = (state, action) => {
   if (action.type === "ADD_ITEM") {
     //Use concat instead of push to create a new array and not edit the existing array.
     const updatedItems = state.items.concat(action.item);
-    const updatedAmount =
-      state.totalAmount + action.item.price * action.item.quantity;
+    const updatedPrice =
+      state.totalPrice + action.item.price * action.item.quantity;
 
     return {
       items: updatedItems,
-      totalAmount: updatedAmount,
+      totalPrice: updatedPrice,
     };
+  }
+
+  if (action.type === "REMOVE_ITEM") {
   }
   return initialState;
 };
 export const CartContext = React.createContext({
   items: [],
-  total: 0,
+  totalPrice: 0,
   addItem: (item) => {},
   removeItem: (id) => {},
 });
@@ -35,7 +38,7 @@ export const CartProvider = ({ children }) => {
   };
   const cartContext = {
     items: cartState.items,
-    totalAmount: cartState.totalAmount,
+    totalPrice: cartState.totalPrice,
     addItem: addItemHandler,
     removeItem: removeItemHanlder,
   };
