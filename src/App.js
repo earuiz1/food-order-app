@@ -8,27 +8,27 @@ import { CartProvider } from "./context/cartContext";
 const App = () => {
   const meals = [
     {
-      id: Math.random().toString(),
+      id: "v1",
       name: "Enchiladas Rojas",
       price: "10.99",
     },
     {
-      id: Math.random().toString(),
+      id: "v2",
       name: "Enchiladas Verdes",
       price: "11.99",
     },
     {
-      id: Math.random().toString(),
+      id: "v3",
       name: "Flautas de Carne",
       price: "12.99",
     },
     {
-      id: Math.random().toString(),
+      id: "v4",
       name: "Flautas de Pollo",
       price: "12.99",
     },
     {
-      id: Math.random().toString(),
+      id: "v5",
       name: "Nachos a la Mexicana",
       price: "14.99",
     },

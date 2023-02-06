@@ -5,6 +5,16 @@ import { CartContext } from "../../context/cartContext";
 const Cart = ({ onClose }) => {
   const cartContext = useContext(CartContext);
 
+  //console.log(cartContext.items);
+
+  const addItemHandler = (item) => {
+    cartContext.addItem({ ...item, quantity: 1 });
+  };
+
+  const removeItemHandler = (id) => {
+    cartContext.removeItem(id);
+  };
+
   return (
     <Modal onClose={onClose}>
       {cartContext.items.map((item) => {
@@ -20,10 +30,16 @@ const Cart = ({ onClose }) => {
               </span>
             </div>
             <div className="flex items-center gap-2">
-              <button className="bg-slate-700 self-start rounded-lg px-3  text-slate-100">
+              <button
+                onClick={() => removeItemHandler(item.id)}
+                className="bg-slate-700 self-start rounded-lg px-3  text-slate-100"
+              >
                 -
               </button>
-              <button className="bg-slate-700 self-start rounded-lg px-3 text-slate-100">
+              <button
+                onClick={() => addItemHandler(item)}
+                className="bg-slate-700 self-start rounded-lg px-3 text-slate-100"
+              >
                 +
               </button>
               <span className="font-medium">{item.quantity}</span>
@@ -34,7 +50,7 @@ const Cart = ({ onClose }) => {
       <div className="flex justify-between">
         <span className="font-bold">Total Amount: </span>
         <span className="font-bold text-red-700">
-          ${cartContext.totalPrice}
+          ${+cartContext.totalPrice.toFixed(2)}
         </span>
       </div>
       <div className="flex w-full justify-end gap-2">

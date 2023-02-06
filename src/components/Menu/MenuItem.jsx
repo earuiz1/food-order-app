@@ -1,30 +1,33 @@
-import React, { useRef, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { CartContext } from "../../context/cartContext";
 
 const MenuItem = ({ id, name, price }) => {
   const [error, setError] = useState(false);
 
-  const inputRef = useRef();
+  const [inputValue, setInputValue] = useState(1);
 
   const cartContext = useContext(CartContext);
 
+  const inputHandler = (event) => {
+    setInputValue(event.target.value);
+  };
+
   const submitHandler = (event) => {
     event.preventDefault();
-    //This value is alway a string even if the input is a number, remember this
-    const inputValue = inputRef.current.value;
-    const transformedInputValue = +inputValue;
 
-    if (inputValue.trim().length === 0 || transformedInputValue < 1) {
+    if (+inputValue <= 0 || inputValue === "") {
       setError(true);
-      return;
-    }
+    } else {
+      cartContext.addItem({
+        id,
+        name,
+        quantity: +inputValue,
+        price,
+      });
 
-    cartContext.addItem({
-      id: id,
-      name: name,
-      quantity: transformedInputValue,
-      price: price,
-    });
+      setError(false);
+      setInputValue(1);
+    }
   };
   return (
     <form onSubmit={submitHandler}>
@@ -41,10 +44,10 @@ const MenuItem = ({ id, name, price }) => {
           {/* <label className="text-slate-50 text-sm">Amount:</label> */}
           <input
             type="number"
-            ref={inputRef}
+            // ref={inputRef}
             className="w-[50px] rounded-lg px-2"
-            defaultValue={1}
-            min="1"
+            onChange={inputHandler}
+            value={inputValue}
           />
           <button className="bg-slate-500 text-slate-50 font-semibold text-sm rounded-lg py-1 px-2">
             Add

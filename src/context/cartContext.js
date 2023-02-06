@@ -5,18 +5,42 @@ const initialState = {
 };
 const cartReducer = (state, action) => {
   if (action.type === "ADD_ITEM") {
-    //Use concat instead of push to create a new array and not edit the existing array.
-    const updatedItems = state.items.concat(action.item);
-    const updatedPrice =
-      state.totalPrice + action.item.price * action.item.quantity;
+    let updatedItems;
+    const itemIndex = state.items.findIndex(
+      (item) => item.id === action.item.id
+    );
+    if (itemIndex === -1) {
+      updatedItems = [...state.items, action.item];
+    } else {
+      updatedItems = [...state.items];
+      updatedItems[itemIndex].quantity += action.item.quantity;
+    }
 
+    let updatedTotalPrice =
+      state.totalPrice + action.item.price * action.item.quantity;
     return {
       items: updatedItems,
-      totalPrice: updatedPrice,
+      totalPrice: updatedTotalPrice,
     };
   }
 
   if (action.type === "REMOVE_ITEM") {
+    let updatedItems;
+    const itemIndex = state.items.findIndex((item) => item.id === action.id);
+
+    let updatedTotalPrice = state.totalPrice - state.items[itemIndex].price;
+
+    if (state.items[itemIndex].quantity === 1) {
+      updatedItems = state.items.filter((item) => item.id !== action.id);
+      console.log(updatedItems);
+    } else {
+      updatedItems = [...state.items];
+      updatedItems[itemIndex].quantity = updatedItems[itemIndex].quantity - 1;
+    }
+    return {
+      items: updatedItems,
+      totalPrice: updatedTotalPrice,
+    };
   }
   return initialState;
 };
