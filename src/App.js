@@ -29,7 +29,7 @@ const App = () => {
     },
     {
       id: "v5",
-      name: "Nachos a la Mexicana",
+      name: "Nachos",
       price: "14.99",
     },
   ];

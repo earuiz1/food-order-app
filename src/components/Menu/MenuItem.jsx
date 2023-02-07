@@ -49,7 +49,7 @@ const MenuItem = ({ id, name, price }) => {
             onChange={inputHandler}
             value={inputValue}
           />
-          <button className="bg-slate-500 text-slate-50 font-semibold text-sm rounded-lg py-1 px-2">
+          <button className="bg-slate-500 py-1 px-4 text-slate-50 font-semibold text-sm rounded-lg ">
             Add
           </button>
         </div>

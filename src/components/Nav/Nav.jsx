@@ -4,10 +4,12 @@ import { IoFastFood } from "react-icons/io5";
 
 const Nav = ({ onOpen }) => {
   return (
-    <div className="bg-slate-900 w-full flex justify-between items-center py-4 px-2">
+    <div className="bg-slate-900 w-full flex justify-between items-center py-4 px-6">
       <div className="flex items-center gap-2">
-        <IoFastFood className="text-slate-50" size={25} />
-        <h1 className="text-slate-50 font-bold">Delicias Ruiz</h1>
+        <IoFastFood className="text-slate-50" size={30} />
+        <h1 className="text-slate-50 font-bold text-2xl md:text-3xl">
+          Delicias Ruiz
+        </h1>
       </div>
       <NavCart onOpen={onOpen} />
     </div>
