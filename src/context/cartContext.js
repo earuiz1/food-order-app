@@ -37,7 +37,7 @@ const cartReducer = (state, action) => {
     if (state.items[itemIndex].quantity === 1 && state.items.length > 1) {
       updatedItems = state.items.filter((item) => item.id !== action.id);
       updatedCartEmpty = false;
-      console.log(updatedItems);
+      //console.log(updatedItems);
     } else if (
       state.items[itemIndex].quantity === 1 &&
       state.items.length === 1

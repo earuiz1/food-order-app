@@ -1,40 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Nav from "./components/Nav/Nav";
 import HeaderMain from "./components/Header/HeaderMain";
 import MenuList from "./components/Menu/MenuList";
 import Cart from "./components/Cart/Cart";
 import { CartProvider } from "./context/cartContext";
+import { db } from "./firebase";
+import { collection, getDocs } from "@firebase/firestore";
 
 const App = () => {
-  const meals = [
-    {
-      id: "v1",
-      name: "Enchiladas Rojas",
-      price: "10.99",
-    },
-    {
-      id: "v2",
-      name: "Enchiladas Verdes",
-      price: "11.99",
-    },
-    {
-      id: "v3",
-      name: "Flautas de Carne",
-      price: "12.99",
-    },
-    {
-      id: "v4",
-      name: "Flautas de Pollo",
-      price: "12.99",
-    },
-    {
-      id: "v5",
-      name: "Nachos",
-      price: "14.99",
-    },
-  ];
-
+  const [meals, setMeals] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  /* Getting the data from the firebase database and setting it to the state. */
+  useEffect(() => {
+    const getData = async () => {
+      const mealsData = await getDocs(collection(db, "meals"));
+      setMeals(mealsData.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      console.log(meals);
+    };
+
+    getData();
+  }, []);
 
   const closeModal = () => {
     setIsModalOpen(false);

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import Modal from "../UI/Modal";
 
 import { CartContext } from "../../context/cartContext";
@@ -6,7 +6,7 @@ import { CartContext } from "../../context/cartContext";
 const Cart = ({ onClose }) => {
   const cartContext = useContext(CartContext);
 
-  console.log(cartContext);
+  //console.log(cartContext);
 
   const addItemHandler = (item) => {
     cartContext.addItem({ ...item, quantity: 1 });
