@@ -32,7 +32,7 @@ const MenuItem = ({ id, name, price, url }) => {
   return (
     <form
       onSubmit={submitHandler}
-      className="flex flex-col rounded-lg bg-slate-900 p-3 gap-2 shadow-md shadow-slate-400"
+      className="flex flex-col rounded-lg bg-slate-900 p-3 gap-3 shadow-md shadow-slate-400"
     >
       <div className="w-full">
         <img
@@ -56,11 +56,14 @@ const MenuItem = ({ id, name, price, url }) => {
         <span className="font-bold text-sm md:text-base lg:text-lg italic text-red-700">
           ${price}
         </span>
-        <div className="flex gap-2">
+        <div className="flex items-center gap-2">
+          {error && <p className="text-red-700 font-bold text-sm">Invalid!</p>}
           <input
             type="number"
             // ref={inputRef}
-            className="w-[80px] rounded-lg px-2"
+            className={`w-[80px] rounded-lg px-2 ${
+              error ? "outline-2 outline-red-400 border-2 border-red-400" : ""
+            }`}
             onChange={inputHandler}
             value={inputValue}
           />
