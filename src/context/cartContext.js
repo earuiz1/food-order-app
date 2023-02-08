@@ -2,7 +2,6 @@ import React, { useReducer } from "react";
 const initialState = {
   items: [],
   totalPrice: 0,
-  cartEmpty: true,
 };
 const cartReducer = (state, action) => {
   if (action.type === "ADD_ITEM") {
@@ -17,13 +16,11 @@ const cartReducer = (state, action) => {
       updatedItems = [...state.items];
       updatedItems[itemIndex].quantity += action.item.quantity;
     }
-    let updatedCartEmpty = false;
     let updatedTotalPrice =
       state.totalPrice + action.item.price * action.item.quantity;
     return {
       items: updatedItems,
       totalPrice: updatedTotalPrice,
-      cartEmpty: updatedCartEmpty,
     };
   }
 
@@ -34,20 +31,11 @@ const cartReducer = (state, action) => {
     let updatedTotalPrice = state.totalPrice - state.items[itemIndex].price;
 
     let updatedCartEmpty;
-    if (state.items[itemIndex].quantity === 1 && state.items.length > 1) {
+    if (state.items[itemIndex].quantity === 1) {
       updatedItems = state.items.filter((item) => item.id !== action.id);
-      updatedCartEmpty = false;
-      //console.log(updatedItems);
-    } else if (
-      state.items[itemIndex].quantity === 1 &&
-      state.items.length === 1
-    ) {
-      updatedItems = state.items.filter((item) => item.id !== action.id);
-      updatedCartEmpty = true;
     } else {
       updatedItems = [...state.items];
       updatedItems[itemIndex].quantity = updatedItems[itemIndex].quantity - 1;
-      updatedCartEmpty = false;
     }
     return {
       items: updatedItems,
@@ -55,12 +43,13 @@ const cartReducer = (state, action) => {
       cartEmpty: updatedCartEmpty,
     };
   }
+
   return initialState;
 };
+
 export const CartContext = React.createContext({
   items: [],
   totalPrice: 0,
-  cartEmpty: true,
   addItem: (item) => {},
   removeItem: (id) => {},
 });
@@ -77,7 +66,6 @@ export const CartProvider = ({ children }) => {
   const cartContext = {
     items: cartState.items,
     totalPrice: cartState.totalPrice,
-    cartEmpty: cartState.cartEmpty,
     addItem: addItemHandler,
     removeItem: removeItemHanlder,
   };

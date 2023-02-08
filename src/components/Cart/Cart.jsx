@@ -8,6 +8,8 @@ const Cart = ({ onClose }) => {
 
   //console.log(cartContext);
 
+  const cartIsEmpty = cartContext.items.length === 0;
+
   const addItemHandler = (item) => {
     cartContext.addItem({ ...item, quantity: 1 });
   };
@@ -18,7 +20,7 @@ const Cart = ({ onClose }) => {
 
   return (
     <Modal onClose={onClose}>
-      {cartContext.cartEmpty ? (
+      {cartIsEmpty ? (
         <div className="flex flex-col gap-4 py-2">
           <span className="text-center font-bold">Your Cart is Empty!</span>
           <div className="flex justify-center">
