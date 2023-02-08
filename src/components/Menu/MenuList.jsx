@@ -3,21 +3,31 @@ import MenuItem from "./MenuItem";
 
 const MenuList = ({ meals }) => {
   return (
-    <section className="absolute top-[40vh] left-1/2 transform -translate-x-1/2 w-[90%] md:w-[80%] mx-auto">
-      <div className="flex flex-col w-full bg-slate-900 rounded-md p-6 gap-6 shadow-lg shadow-slate-600">
-        <ul>
-          {meals.map((meal) => {
-            return (
-              <li
-                key={meal.id}
-                className="border-b border-slate-50 py-6 last:border-b-0"
-              >
-                <MenuItem id={meal.id} name={meal.name} price={meal.price} />
-              </li>
-            );
-          })}
-        </ul>
+    <section className="w-full my-5 px-4">
+      <div className="flex gap-2 items-end justify-between md:justify-start mb-4">
+        <h2 className="text-red-600 font-extrabold text-4xl uppercase">
+          Featured
+        </h2>
+        <span className="font-medium uppercase hover:underline hover:underline-offset-2">
+          See more
+        </span>
       </div>
+      {/* <div className="grid grid-cols-1 md:grid-cols-4 w-full px-2"> */}
+      <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 w-full gap-y-4 gap-x-6">
+        {meals.map((meal) => {
+          return (
+            <li key={meal.id} className="min-w-[300px] max-w-[500px] mx-auto">
+              <MenuItem
+                id={meal.id}
+                name={meal.name}
+                price={meal.price}
+                url={meal.url}
+              />
+            </li>
+          );
+        })}
+      </ul>
+      {/* </div> */}
     </section>
   );
 };

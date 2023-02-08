@@ -38,8 +38,8 @@ const App = () => {
       <HeaderMain />
       {isLoading ? (
         <section className="flex justify-center w-full my-20 gap-3">
-          <ImSpinner2 className="text-slate-50 animate-spin" size={30} />
-          <span className="text-slate-50 font-bold">Loading...</span>
+          <ImSpinner2 className="text-slate-900 animate-spin" size={30} />
+          <span className="text-slate-900 font-bold">Loading...</span>
         </section>
       ) : (
         <MenuList meals={meals} />
