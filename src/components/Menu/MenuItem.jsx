@@ -56,18 +56,18 @@ const MenuItem = ({ id, name, price, url }) => {
         <span className="font-bold text-sm md:text-base lg:text-lg italic text-red-700">
           ${price}
         </span>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 ">
           {error && <p className="text-red-700 font-bold text-sm">Invalid!</p>}
           <input
             type="number"
             // ref={inputRef}
-            className={`w-[80px] rounded-lg px-2 ${
+            className={`w-[80px] rounded-lg py-[0.18rem] px-2 ${
               error ? "outline-2 outline-red-400 border-2 border-red-400" : ""
             }`}
             onChange={inputHandler}
             value={inputValue}
           />
-          <button className="bg-slate-500 py-1 px-4 text-slate-50 font-semibold text-sm rounded-lg ">
+          <button className="bg-slate-600 py-2 px-4 text-slate-50 font-semibold text-sm rounded-lg ">
             Add
           </button>
         </div>
