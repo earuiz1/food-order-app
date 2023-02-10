@@ -14,6 +14,7 @@ const Cart = ({ onClose }) => {
     try {
       const docRef = await addDoc(collection(db, "users"), {
         ...data,
+        items: cartContext.items,
       });
 
       console.log("Document written with ID: ", docRef.id);

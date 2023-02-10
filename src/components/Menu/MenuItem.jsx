@@ -1,37 +1,43 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { CartContext } from "../../context/cartContext";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 const MenuItem = ({ id, name, price, url }) => {
-  const [error, setError] = useState(false);
-
-  const [inputValue, setInputValue] = useState(1);
-
   const cartContext = useContext(CartContext);
 
-  const inputHandler = (event) => {
-    setInputValue(event.target.value);
+  const onSubmit = (values, actions) => {
+    cartContext.addItem({
+      id,
+      name,
+      quantity: values.quantity,
+      price,
+    });
+
+    actions.resetForm({
+      quantity: 1,
+    });
   };
 
-  const submitHandler = (event) => {
-    event.preventDefault();
-
-    if (+inputValue <= 0 || inputValue === "") {
-      setError(true);
-    } else {
-      cartContext.addItem({
-        id,
-        name,
-        quantity: +inputValue,
-        price,
-      });
-
-      setError(false);
-      setInputValue(1);
-    }
+  const initialValues = {
+    quantity: 1,
   };
+
+  /* Validating the form inputs using yup. */
+  const validationSchema = Yup.object({
+    quantity: Yup.number().moreThan(0, "Invalid!").required("Field required!"),
+  });
+
+  /* A hook that is used to validate the form inputs. */
+  const formik = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit,
+  });
+
   return (
     <form
-      onSubmit={submitHandler}
+      onSubmit={formik.handleSubmit}
       className="flex flex-col rounded-lg bg-slate-900 p-3 gap-3 shadow-md shadow-slate-400"
     >
       <div className="w-full">
@@ -57,17 +63,28 @@ const MenuItem = ({ id, name, price, url }) => {
           ${price}
         </span>
         <div className="flex items-center gap-2 ">
-          {error && <p className="text-red-700 font-bold text-sm">Invalid!</p>}
+          {formik.errors.quantity && (
+            <p className="text-red-700 font-bold text-sm">
+              {formik.errors.quantity}
+            </p>
+          )}
           <input
             type="number"
+            name="quantity"
             // ref={inputRef}
-            className={`w-[80px] rounded-lg py-[0.18rem] px-2 ${
-              error ? "outline-2 outline-red-400 border-2 border-red-400" : ""
+            className={`w-[80px] rounded-lg py-[0.1rem] px-2 ${
+              formik.errors.quantity
+                ? "outline-2 outline-red-400 border-2 border-red-400"
+                : ""
             }`}
-            onChange={inputHandler}
-            value={inputValue}
+            onChange={formik.handleChange}
+            value={formik.values.quantity}
+            min="1"
           />
-          <button className="bg-slate-600 py-2 px-4 text-slate-50 font-semibold text-sm rounded-lg ">
+          <button
+            type="submit"
+            className="bg-slate-600 py-2 px-4 text-slate-50 font-semibold text-sm rounded-lg "
+          >
             Add
           </button>
         </div>

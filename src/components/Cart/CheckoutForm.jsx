@@ -1,10 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
 const CheckoutForm = ({ submitOrder }) => {
-  const [isError, setIsError] = useState(false);
-
   /* Setting the initial values of the form using formik. */
   const onSubmit = (values, actions) => {
     console.log(formik.values);
@@ -39,8 +37,7 @@ const CheckoutForm = ({ submitOrder }) => {
       .max(20, "Invalid email address!")
       .required("Street is required"),
     zipCode: Yup.string()
-      .min(5, "Zip Code must be 5 characters long!")
-      .max(5, "Zip Code must be 5 characters long!")
+      .length(5, "Zip Code must be 5 characters long!")
       .required("Zip Code is required"),
     city: Yup.string()
       .max(15, "City must be characters long!")
@@ -60,44 +57,72 @@ const CheckoutForm = ({ submitOrder }) => {
       onSubmit={formik.handleSubmit}
     >
       <div>
-        <label htmlFor="name">Name</label>
+        <label htmlFor="name" className="font-medium ">
+          Name
+        </label>
         <input
           type="text"
           name="name"
           onChange={formik.handleChange}
           value={formik.values.name}
-          className="w-full border bg-gray-200 rounded-md"
+          className="w-full border bg-gray-200 rounded-md px-2"
         />
+        {formik.errors.name && (
+          <span className="text-red-700 font-bold text-sm">
+            {formik.errors.name}
+          </span>
+        )}
       </div>
       <div>
-        <label htmlFor="street">Street</label>
+        <label htmlFor="street" className="font-medium">
+          Street
+        </label>
         <input
           type="text"
           name="street"
           onChange={formik.handleChange}
           value={formik.values.street}
-          className="w-full border bg-gray-200 rounded-md"
+          className="w-full border bg-gray-200 rounded-md px-2"
         />
+        {formik.errors.street && (
+          <span className="text-red-700 font-bold text-sm">
+            {formik.errors.street}
+          </span>
+        )}
       </div>
       <div>
-        <label htmlFor="zipCode">Zip Code</label>
+        <label htmlFor="zipCode" className="font-medium">
+          Zip Code
+        </label>
         <input
           type="text"
           name="zipCode"
           onChange={formik.handleChange}
           value={formik.values.zipCode}
-          className="w-full border bg-gray-200 rounded-md"
+          className="w-full border bg-gray-200 rounded-md px-2"
         />
+        {formik.errors.zipCode && (
+          <span className="text-red-700 font-bold text-sm">
+            {formik.errors.zipCode}
+          </span>
+        )}
       </div>
       <div>
-        <label htmlFor="city">City</label>
+        <label htmlFor="city" className="font-medium">
+          City
+        </label>
         <input
           type="text"
           name="city"
           onChange={formik.handleChange}
           value={formik.values.city}
-          className="w-full border bg-gray-200 rounded-md"
+          className="w-full border bg-gray-200 rounded-md px-2"
         />
+        {formik.errors.city && (
+          <span className="text-red-700 font-bold text-sm">
+            {formik.errors.city}
+          </span>
+        )}
       </div>
       <button type="submit" className="bg-slate-900 text-slate-50 p-2">
         Confirm

@@ -2,11 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom";
 import ModalOverlay from "./ModalOverlay";
 
-const Modal = ({ children, onClose }) => {
+const Modal = ({ children }) => {
   return (
     <React.Fragment>
       {ReactDOM.createPortal(
-        <ModalOverlay onClose={onClose}>{children}</ModalOverlay>,
+        <ModalOverlay>{children}</ModalOverlay>,
         document.getElementById("overlays")
       )}
     </React.Fragment>
