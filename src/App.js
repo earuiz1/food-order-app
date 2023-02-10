@@ -25,6 +25,12 @@ const App = () => {
     getData();
   }, []);
 
+  //Disable page scroll if modal is open, otherwise allow it.
+  useEffect(() => {
+    const body = document.querySelector("body");
+    body.style.overflow = isModalOpen ? "hidden" : "auto";
+  }, [isModalOpen]);
+
   const closeModal = () => {
     setIsModalOpen(false);
   };
