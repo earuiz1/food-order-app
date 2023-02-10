@@ -7,6 +7,7 @@ import { CartProvider } from "./context/cartContext";
 import { db } from "./firebase";
 import { collection, getDocs } from "@firebase/firestore";
 import { ImSpinner2 } from "react-icons/im";
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
   const [meals, setMeals] = useState([]);
@@ -33,6 +34,7 @@ const App = () => {
   };
   return (
     <CartProvider>
+      <ToastContainer limit={1} />
       {isModalOpen && <Cart onClose={closeModal} />}
       <Nav onOpen={openModal} />
       <HeaderMain />

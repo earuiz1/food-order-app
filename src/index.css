@@ -12,5 +12,6 @@ html{
     body {
         @apply relative;
         @apply bg-slate-50;
+        
     }
   }

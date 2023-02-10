@@ -44,6 +44,10 @@ const cartReducer = (state, action) => {
     };
   }
 
+  if (action.type === "RESET_CART") {
+    return initialState;
+  }
+
   return initialState;
 };
 
@@ -52,6 +56,7 @@ export const CartContext = React.createContext({
   totalPrice: 0,
   addItem: (item) => {},
   removeItem: (id) => {},
+  resetCart: () => {},
 });
 
 export const CartProvider = ({ children }) => {
@@ -63,11 +68,16 @@ export const CartProvider = ({ children }) => {
   const removeItemHanlder = (id) => {
     dispatch({ type: "REMOVE_ITEM", id: id });
   };
+
+  const resetCartHandler = () => {
+    dispatch({ type: "RESET_CART" });
+  };
   const cartContext = {
     items: cartState.items,
     totalPrice: cartState.totalPrice,
     addItem: addItemHandler,
     removeItem: removeItemHanlder,
+    resetCart: resetCartHandler,
   };
   return (
     <CartContext.Provider value={cartContext}>{children}</CartContext.Provider>
