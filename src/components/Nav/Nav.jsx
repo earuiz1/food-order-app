@@ -2,7 +2,7 @@ import React from "react";
 import NavCart from "./NavCart";
 import { IoFastFood } from "react-icons/io5";
 
-const Nav = ({ onOpen }) => {
+const Nav = () => {
   return (
     <div className="fixed bg-slate-900 w-full flex justify-between items-center py-4 px-6 z-[8]">
       <div className="flex items-center gap-2">
@@ -11,7 +11,7 @@ const Nav = ({ onOpen }) => {
           Delicias Ruiz
         </h1>
       </div>
-      <NavCart onOpen={onOpen} />
+      <NavCart />
     </div>
   );
 };

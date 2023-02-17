@@ -1,23 +1,24 @@
-import React, { useContext } from "react";
+import React from "react";
 import Modal from "../UI/Modal";
 import CartEmpty from "./CartEmpty";
 import CartItems from "./CartItems";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../../firebase";
-import { CartContext } from "../../context/cartContext";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useSelector, useDispatch } from "react-redux";
+import { cartActions } from "../../store/index";
 
-const Cart = ({ onClose }) => {
-  const cartContext = useContext(CartContext);
-
-  const cartIsEmpty = cartContext.items.length === 0;
+const Cart = () => {
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.cart.items);
+  const cartIsEmpty = cartItems.length === 0;
 
   const submitOrder = async (data) => {
     try {
       const docRef = await addDoc(collection(db, "users"), {
         ...data,
-        items: cartContext.items,
+        items: cartItems,
       });
 
       //Show toast
@@ -28,7 +29,7 @@ const Cart = ({ onClose }) => {
         theme: "light",
       });
 
-      setTimeout(() => cartContext.resetCart(), 3000);
+      setTimeout(() => dispatch(cartActions.resetCart()), 3000);
 
       console.log("Document written with ID: ", docRef.id);
     } catch (e) {
@@ -45,12 +46,8 @@ const Cart = ({ onClose }) => {
   };
 
   return (
-    <Modal onClose={onClose}>
-      {cartIsEmpty ? (
-        <CartEmpty onClose={onClose} />
-      ) : (
-        <CartItems onClose={onClose} submitOrder={submitOrder} />
-      )}
+    <Modal>
+      {cartIsEmpty ? <CartEmpty /> : <CartItems submitOrder={submitOrder} />}
     </Modal>
   );
 };

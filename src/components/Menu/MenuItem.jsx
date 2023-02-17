@@ -1,18 +1,16 @@
-import React, { useContext } from "react";
-import { CartContext } from "../../context/cartContext";
+import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { cartActions } from "../../store/index";
+import { useDispatch } from "react-redux";
 
 const MenuItem = ({ id, name, price, url }) => {
-  const cartContext = useContext(CartContext);
+  const dispatch = useDispatch();
 
   const onSubmit = (values, actions) => {
-    cartContext.addItem({
-      id,
-      name,
-      quantity: values.quantity,
-      price,
-    });
+    dispatch(
+      cartActions.addItem({ id, name, quantity: values.quantity, price })
+    );
 
     actions.resetForm({
       quantity: 1,

@@ -1,18 +1,19 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Nav from "./components/Nav/Nav";
 import HeaderMain from "./components/Header/HeaderMain";
 import MenuList from "./components/Menu/MenuList";
 import Cart from "./components/Cart/Cart";
-import { CartProvider } from "./context/cartContext";
 import { db } from "./firebase";
 import { collection, getDocs } from "@firebase/firestore";
 import { ImSpinner2 } from "react-icons/im";
 import { ToastContainer } from "react-toastify";
+import { useSelector } from "react-redux";
 
 const App = () => {
   const [meals, setMeals] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+
+  const isModalShowing = useSelector((state) => state.modal.isModalShowing);
 
   useEffect(() => {
     const getData = async () => {
@@ -28,21 +29,14 @@ const App = () => {
   //Disable page scroll if modal is open, otherwise allow it.
   useEffect(() => {
     const body = document.querySelector("body");
-    body.style.overflow = isModalOpen ? "hidden" : "auto";
-  }, [isModalOpen]);
+    body.style.overflow = isModalShowing ? "hidden" : "auto";
+  }, [isModalShowing]);
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
   return (
-    <CartProvider>
+    <React.Fragment>
       <ToastContainer limit={1} />
-      {isModalOpen && <Cart onClose={closeModal} />}
-      <Nav onOpen={openModal} />
+      {isModalShowing && <Cart />}
+      <Nav />
       <HeaderMain />
       {isLoading ? (
         <section className="flex justify-center w-full my-20 gap-3">
@@ -52,7 +46,7 @@ const App = () => {
       ) : (
         <MenuList meals={meals} />
       )}
-    </CartProvider>
+    </React.Fragment>
   );
 };
 

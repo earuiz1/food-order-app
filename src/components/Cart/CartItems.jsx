@@ -1,28 +1,41 @@
-import React, { useContext, useState } from "react";
-import { CartContext } from "../../context/cartContext";
+import React, { useState } from "react";
 import CheckoutForm from "./CheckoutForm";
+import { useDispatch, useSelector } from "react-redux";
+import { modalActions } from "../../store/index";
+import { cartActions } from "../../store/index";
 
-const CartItems = ({ onClose, submitOrder }) => {
-  const cartContext = useContext(CartContext);
+const CartItems = ({ submitOrder }) => {
+  const dispatch = useDispatch();
+
+  const cartItems = useSelector((state) => state.cart.items);
+  const cartTotalPrice = useSelector((state) => state.cart.totalPrice);
 
   const [isCheckoutReady, setIsCheckoutReady] = useState(false);
 
   const addItemHandler = (item) => {
-    cartContext.addItem({ ...item, quantity: 1 });
+    dispatch(
+      cartActions.addItem({
+        ...item,
+        quantity: 1,
+      })
+    );
   };
 
   const removeItemHandler = (id) => {
-    cartContext.removeItem(id);
+    dispatch(cartActions.removeItem(id));
+  };
+
+  const closeModalHandler = () => {
+    dispatch(modalActions.closeModal());
   };
 
   const orderHandler = () => {
-    //checkoutReady(true);
     setIsCheckoutReady(true);
   };
 
   return (
     <React.Fragment>
-      {cartContext.items.map((item) => {
+      {cartItems.map((item) => {
         return (
           <div
             key={item.id}
@@ -59,7 +72,7 @@ const CartItems = ({ onClose, submitOrder }) => {
       <div className="flex justify-between">
         <span className="text-sm md:text-base font-bold">Total Amount:</span>
         <span className="text-sm md:text-base font-bold text-red-700">
-          ${+cartContext.totalPrice.toFixed(2)}
+          {+cartTotalPrice.toFixed(2)}
         </span>
       </div>
       {isCheckoutReady ? (
@@ -67,7 +80,7 @@ const CartItems = ({ onClose, submitOrder }) => {
       ) : (
         <div className="flex w-full justify-end gap-2">
           <button
-            onClick={onClose}
+            onClick={closeModalHandler}
             className="bg-slate-600 p-2 rounded-lg text-slate-100 text-sm md:text-base "
           >
             Close
