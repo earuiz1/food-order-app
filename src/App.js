@@ -3,9 +3,9 @@ import Nav from "./components/Nav/Nav";
 import HeaderMain from "./components/Header/HeaderMain";
 import MenuList from "./components/Menu/MenuList";
 import Cart from "./components/Cart/Cart";
+import LoadingSection from "./components/LoadingSection/LoadingSection";
 import { db } from "./firebase";
 import { collection, getDocs } from "@firebase/firestore";
-import { ImSpinner2 } from "react-icons/im";
 import { ToastContainer } from "react-toastify";
 import { useSelector } from "react-redux";
 
@@ -38,14 +38,7 @@ const App = () => {
       {isModalShowing && <Cart />}
       <Nav />
       <HeaderMain />
-      {isLoading ? (
-        <section className="flex justify-center w-full my-20 gap-3">
-          <ImSpinner2 className="text-slate-900 animate-spin" size={30} />
-          <span className="text-slate-900 font-bold">Loading...</span>
-        </section>
-      ) : (
-        <MenuList meals={meals} />
-      )}
+      {isLoading ? <LoadingSection /> : <MenuList meals={meals} />}
     </React.Fragment>
   );
 };

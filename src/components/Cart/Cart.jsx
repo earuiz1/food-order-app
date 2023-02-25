@@ -22,6 +22,14 @@ const Cart = () => {
       });
 
       //Show toast
+      toast.success(`Loading....`, {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        theme: "light",
+      });
+
+      //Show toast
       toast.success(`Order complete!`, {
         position: "top-center",
         autoClose: 2000,
