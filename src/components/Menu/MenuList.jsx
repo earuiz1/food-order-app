@@ -1,7 +1,9 @@
 import React from "react";
 import MenuItem from "./MenuItem";
+import { useLoaderData } from "react-router-dom";
 
-const MenuList = ({ meals }) => {
+const MenuList = () => {
+  const meals = useLoaderData();
   return (
     <section className="w-full my-5 px-4">
       <div className="flex gap-2 items-end justify-between md:justify-start mb-4">
