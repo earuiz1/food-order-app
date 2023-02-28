@@ -5,7 +5,7 @@ import Nav from "../components/Nav/Nav";
 const RootLayout = () => {
   return (
     <>
-      {/* <Nav /> */}
+      <Nav />
       <Outlet />
     </>
   );

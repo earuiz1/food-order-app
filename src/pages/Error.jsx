@@ -9,7 +9,7 @@ const Error = () => {
   let errorMessage = "Something went wrong...";
 
   if (error.status === 500) {
-    errorMessage = JSON.parse(error.data).message;
+    errorMessage = error.data.message;
   }
 
   if (error.status === 404) {

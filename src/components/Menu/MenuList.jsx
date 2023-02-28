@@ -24,6 +24,7 @@ const MenuList = () => {
                 name={meal.name}
                 price={meal.price}
                 url={meal.url}
+                description={meal.description}
               />
             </li>
           );
