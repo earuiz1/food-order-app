@@ -2,15 +2,22 @@ import React, { useEffect } from "react";
 import { json } from "react-router-dom";
 import { db } from "../firebase";
 import { doc, getDoc } from "@firebase/firestore";
+import { useSelector } from "react-redux";
 import Item from "../components/Item";
+import Cart from "../components/Cart/Cart";
 
 const DetailedItem = () => {
-  useEffect(() => {
-    const nav = document.querySelector("#nav");
-    nav.style.position = "relative";
-  }, []);
+  const isModalShowing = useSelector((state) => state.modal.isModalShowing);
 
-  return <Item />;
+  const nav = document.querySelector("#nav");
+  nav.style.position = "relative";
+
+  return (
+    <>
+      {isModalShowing && <Cart />}
+      <Item />
+    </>
+  );
 };
 
 export default DetailedItem;

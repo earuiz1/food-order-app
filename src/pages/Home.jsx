@@ -4,10 +4,9 @@ import { collection, getDocs } from "@firebase/firestore";
 import { useSelector } from "react-redux";
 import { json } from "react-router-dom";
 import Cart from "../components/Cart/Cart";
-import { ToastContainer } from "react-toastify";
 import HeaderMain from "../components/Header/HeaderMain";
 import MenuList from "../components/Menu/MenuList";
-import Nav from "../components/Nav/Nav";
+// import Nav from "../components/Nav/Nav";
 
 const Home = () => {
   const isModalShowing = useSelector((state) => state.modal.isModalShowing);
@@ -20,7 +19,6 @@ const Home = () => {
 
   return (
     <>
-      <ToastContainer limit={1} />
       {/* <Nav /> */}
       {isModalShowing && <Cart />}
       <HeaderMain />
