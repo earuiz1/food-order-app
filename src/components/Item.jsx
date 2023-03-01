@@ -69,7 +69,7 @@ const Item = () => {
   });
 
   return (
-    <section className="w-full relative px-2">
+    <section className="w-full h-screen px-2">
       <div className="flex w-full flex-col items-center gap-8 mt-10">
         <h1 className="font-bold text-4xl text-center">{name}</h1>
         <form
@@ -120,7 +120,7 @@ const Item = () => {
                   ) : (
                     <ImSpinner2
                       className="text-slate-100 animate-spin"
-                      size={20}
+                      size={28}
                     />
                   )}
                 </button>
@@ -167,11 +167,13 @@ const Item = () => {
             </div>
           </div>
         </form>
-        <Link to=".." className="w-[60%]">
-          <button className="bg-slate-600 w-full py-2 px-4 text-slate-50 font-semibold text-sm rounded-lg">
-            Back
-          </button>
-        </Link>
+        <div className="w-[20%]">
+          <Link to="..">
+            <button className="bg-slate-600 w-full py-2 px-4 text-slate-50 font-semibold text-sm rounded-lg">
+              Back
+            </button>
+          </Link>
+        </div>
       </div>
     </section>
   );
