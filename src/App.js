@@ -3,6 +3,7 @@ import RootLayout from "./pages/RootLayout";
 import HomePage, { loader as mealsLoader } from "./pages/Home";
 import DetailedItemPage, { loader as itemLoader } from "./pages/DetailedItem";
 import ErrorPage from "./pages/Error";
+import SignUpPage from "./pages/SignUp";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
         path: "item/:itemID",
         element: <DetailedItemPage />,
         loader: itemLoader,
+      },
+      {
+        path: "signup",
+        element: <SignUpPage />,
       },
     ],
   },
