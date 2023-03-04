@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db } from "../../firebase";
 import { setDoc, doc } from "firebase/firestore";
 import { toast } from "react-toastify";
@@ -27,6 +27,11 @@ const SignUpContent = () => {
       const user = userCredentials.user;
 
       //console.log(user);
+
+      /* Updating the user profile with the display name. */
+      await updateProfile(user, {
+        displayName: values.name,
+      });
 
       /* Creating a new document in the users collection with the user id as the document id. */
       await setDoc(doc(db, "users", user.uid), {

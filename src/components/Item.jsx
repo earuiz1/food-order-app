@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLoaderData, useParams } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -18,6 +18,11 @@ const Item = () => {
   const dispatch = useDispatch();
 
   const [loading, setLoading] = useState(false);
+
+  /* Used to scroll to the top of the page when the component is mounted. */
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const onSubmit = (values, actions) => {
     setLoading(true);
