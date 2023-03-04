@@ -6,7 +6,6 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import { toast } from "react-toastify";
 import { ImSpinner2 } from "react-icons/im";
-import "react-toastify/dist/ReactToastify.css";
 
 const LoginContent = () => {
   const [loading, setLoading] = useState(false);

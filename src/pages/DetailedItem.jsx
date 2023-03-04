@@ -9,8 +9,8 @@ import Cart from "../components/Cart/Cart";
 const DetailedItem = () => {
   const isModalShowing = useSelector((state) => state.modal.isModalShowing);
 
-  const nav = document.querySelector("#nav");
-  nav.style.position = "relative";
+  // const nav = document.querySelector("#nav");
+  // nav.style.position = "relative";
 
   return (
     <>
