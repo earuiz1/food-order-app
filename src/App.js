@@ -4,6 +4,7 @@ import HomePage, { loader as mealsLoader } from "./pages/Home";
 import DetailedItemPage, { loader as itemLoader } from "./pages/DetailedItem";
 import ErrorPage from "./pages/Error";
 import SignUpPage from "./pages/SignUp";
+import LoginPage from "./pages/Login";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "signup",
         element: <SignUpPage />,
+      },
+      {
+        path: "login",
+        element: <LoginPage />,
       },
     ],
   },

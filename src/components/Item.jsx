@@ -71,7 +71,7 @@ const Item = () => {
   return (
     <section className="w-full h-screen px-2">
       <div className="flex w-full flex-col items-center gap-8 mt-10">
-        <h1 className="font-bold text-4xl text-center">{name}</h1>
+        <h1 className="font-bold text-4xl text-center text-red-600">{name}</h1>
         <form
           onSubmit={formik.handleSubmit}
           className="flex flex-col lg:flex-row lg:justify-evenly rounded-lg bg-slate-900 xl:p-5 lg:p-4 p-3 lg:gap-5 gap-3 shadow-md shadow-slate-400  min-w-[320px] max-w-[400px] lg:min-w-[80%] mx-auto"

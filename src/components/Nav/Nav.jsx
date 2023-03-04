@@ -16,10 +16,17 @@ const Nav = () => {
         </h1>
       </div>
       <div className="flex items-center gap-4">
-        <Link to="signup">
-          <button className="bg-slate-500 text-slate-100 font-bold text-sm rounded-md px-4 py-2">
-            Sign Up
-          </button>
+        <Link
+          to="signup"
+          className="text-slate-100 font-semibold hover:underline-offset-8 hover:underline"
+        >
+          Sign Up
+        </Link>
+        <Link
+          to="login"
+          className="text-slate-100 font-semibold hover:underline-offset-8 hover:underline"
+        >
+          Login
         </Link>
         <NavCart />
       </div>
