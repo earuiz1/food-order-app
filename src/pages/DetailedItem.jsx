@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { json } from "react-router-dom";
 import { db } from "../firebase";
 import { doc, getDoc } from "@firebase/firestore";
