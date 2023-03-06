@@ -2,22 +2,10 @@ import React from "react";
 import { json } from "react-router-dom";
 import { db } from "../firebase";
 import { doc, getDoc } from "@firebase/firestore";
-import { useSelector } from "react-redux";
 import Item from "../components/Item";
-import Cart from "../components/Cart/Cart";
 
 const DetailedItem = () => {
-  const isModalShowing = useSelector((state) => state.modal.isModalShowing);
-
-  // const nav = document.querySelector("#nav");
-  // nav.style.position = "relative";
-
-  return (
-    <>
-      {isModalShowing && <Cart />}
-      <Item />
-    </>
-  );
+  return <Item />;
 };
 
 export default DetailedItem;

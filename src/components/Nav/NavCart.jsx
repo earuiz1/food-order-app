@@ -1,23 +1,13 @@
 import React from "react";
 import { IoCart } from "react-icons/io5";
-import { useDispatch, useSelector } from "react-redux";
-import { modalActions } from "../../store/index";
+import { useSelector } from "react-redux";
 
 const NavCart = () => {
   const cartTotalQuantity = useSelector((state) => state.cart.totalQuantity);
 
-  const dispatch = useDispatch();
-
-  const openModalHandler = () => {
-    dispatch(modalActions.openModal());
-  };
-
   return (
     <React.Fragment>
-      <button
-        className="bg-slate-700 flex justify-center rounded-md hover:-translate-y-1"
-        onClick={openModalHandler}
-      >
+      <button className="bg-slate-700 flex justify-center rounded-md hover:-translate-y-1">
         <div className="relative px-3 py-2">
           <IoCart className="text-slate-50" size={28} />
           <span

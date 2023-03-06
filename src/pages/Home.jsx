@@ -1,26 +1,15 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { db } from "../firebase";
 import { collection, getDocs } from "@firebase/firestore";
-import { useSelector } from "react-redux";
 import { json } from "react-router-dom";
-import Cart from "../components/Cart/Cart";
 import HeaderMain from "../components/Header/HeaderMain";
 import MenuList from "../components/Menu/MenuList";
 // import Nav from "../components/Nav/Nav";
 
 const Home = () => {
-  const isModalShowing = useSelector((state) => state.modal.isModalShowing);
-
-  //Disable page scroll if modal is open, otherwise allow it.
-  useEffect(() => {
-    const body = document.querySelector("body");
-    body.style.overflow = isModalShowing ? "hidden" : "auto";
-  }, [isModalShowing]);
-
   return (
     <>
       {/* <Nav /> */}
-      {isModalShowing && <Cart />}
       <HeaderMain />
       <MenuList />
     </>

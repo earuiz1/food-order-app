@@ -5,6 +5,7 @@ import DetailedItemPage, { loader as itemLoader } from "./pages/DetailedItem";
 import ErrorPage from "./pages/Error";
 import SignUpPage from "./pages/SignUp";
 import LoginPage from "./pages/Login";
+import CartPage from "./pages/Cart";
 
 const router = createHashRouter([
   {
@@ -29,6 +30,10 @@ const router = createHashRouter([
       {
         path: "login",
         element: <LoginPage />,
+      },
+      {
+        path: "cart",
+        element: <CartPage />,
       },
     ],
   },
