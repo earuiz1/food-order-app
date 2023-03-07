@@ -141,7 +141,7 @@ const CheckoutContent = () => {
         </form>
         <div className="flex flex-col self-start min-w-[350px] max-w-[400px] bg-slate-800 shadow-md shadow-slate-400 p-6 rounded-lg gap-2">
           <div className="flex justify-between py-2">
-            <span className="text-slate-100 text-sm">Total Quanity:</span>
+            <span className="text-slate-100 text-sm">Total Quantity:</span>
             <span className="text-slate-100 text-sm font-medium">
               {totalQuantity}
             </span>
@@ -149,13 +149,13 @@ const CheckoutContent = () => {
           <div className="flex justify-between py-2">
             <span className="text-slate-100 text-sm">Items:</span>
             <span className="text-slate-100 text-sm font-medium">
-              ${totalPrice}
+              ${totalPrice.toFixed(2)}
             </span>
           </div>
           <div className="flex justify-between py-2">
             <span className="text-slate-100 text-sm ">Total Before Tax:</span>
             <span className="text-slate-100 text-sm font-medium">
-              ${totalPrice}
+              ${totalPrice.toFixed(2)}
             </span>
           </div>
           <div className="flex justify-between border-b border-slate-400/50 py-2">

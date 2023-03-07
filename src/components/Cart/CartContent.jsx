@@ -27,7 +27,6 @@ const CartContent = () => {
     <section className="w-full h-screen">
       <HeroHeader />
       <div className="flex flex-col lg:flex-row lg:items-center lg:gap-4 my-20 px-2">
-        {/* Container */}
         <table className="table-fixed w-full">
           <thead>
             <tr className="border-b border-slate-400">
@@ -38,6 +37,16 @@ const CartContent = () => {
             </tr>
           </thead>
           <tbody>
+            {cartIsEmpty && (
+              <tr>
+                <td
+                  colSpan={4}
+                  className="text-slate-900 font-bold text-center py-4 border-b border-slate-400"
+                >
+                  Your cart is empty!
+                </td>
+              </tr>
+            )}
             {cartItems.map((item) => {
               return (
                 <tr className=" border-b border-slate-400" key={item.id}>
@@ -74,16 +83,19 @@ const CartContent = () => {
             </tr>
           </tbody>
         </table>
+
         <div className="flex flex-col gap-3 my-10">
           <span className="text-slate-500 text-center">
             Taxes and shipping will added in checkout
           </span>
           <div className="flex flex-col gap-2">
-            <Link to="../checkout">
-              <button className="bg-slate-900 text-slate-100 font-semibold py-2 w-full">
-                Checkout
-              </button>
-            </Link>
+            {!cartIsEmpty && (
+              <Link to="../checkout">
+                <button className="bg-slate-900 text-slate-100 font-semibold py-2 w-full">
+                  Checkout
+                </button>
+              </Link>
+            )}
             <Link to="..">
               <button className="bg-slate-900 text-slate-100 font-semibold py-2 w-full">
                 Continue Shopping
