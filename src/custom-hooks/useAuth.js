@@ -9,6 +9,8 @@ const useAuth = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setCurrentUser(user);
+
+        console.log(user);
       } else {
         setCurrentUser(null);
       }

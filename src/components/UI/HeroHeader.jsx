@@ -1,7 +1,7 @@
 import React from "react";
-import cartHeroImg from "../assets/cart_hero_img.jpeg";
+import cartHeroImg from "../../assets/cart_hero_img.jpeg";
 
-const CartHero = () => {
+const HeroHeader = () => {
   return (
     <div className="w-full h-[200px] relative">
       <div className="bg-slate-900/50 absolute w-full h-full"></div>
@@ -14,4 +14,4 @@ const CartHero = () => {
   );
 };
 
-export default CartHero;
+export default HeroHeader;

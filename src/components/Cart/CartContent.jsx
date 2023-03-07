@@ -1,8 +1,8 @@
 import React from "react";
-import CartHero from "./CartHero";
+import HeroHeader from "../UI/HeroHeader";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { cartActions } from "../store/index";
+import { cartActions } from "../../store/index";
 
 const CartContent = () => {
   const dispatch = useDispatch();
@@ -24,36 +24,36 @@ const CartContent = () => {
   };
 
   return (
-    <section className="h-screen">
-      <CartHero />
-      <div className="grid-col-1 lg:grid-cols-2 mt-10 px-2">
+    <section className="w-full h-screen">
+      <HeroHeader />
+      <div className="flex flex-col lg:flex-row lg:items-center lg:gap-4 my-20 px-2">
         {/* Container */}
         <table className="table-fixed w-full">
           <thead>
-            <tr className="text-center border-b border-slate-400">
-              <th className="text-sm py-2 w-[40%] ">Name</th>
+            <tr className="border-b border-slate-400">
+              <th className="text-sm py-2 w-[40%] text-left">Name</th>
               <th className="text-sm py-2 w-[20%]">Price</th>
               <th className="text-sm py-2 w-[20%]">Qty</th>
-              <th className="text-sm py-2 w-[20%]">Actions</th>
+              <th className="text-sm py-2 w-[20%] text-right">Actions</th>
             </tr>
           </thead>
           <tbody>
             {cartItems.map((item) => {
               return (
                 <tr className=" border-b border-slate-400" key={item.id}>
-                  <td className="text-sm py-4 text-center">{item.name}</td>
+                  <td className="text-sm py-4 text-left">{item.name}</td>
                   <td className="text-sm  text-center py-4 ">${item.price}</td>
                   <td className="text-sm text-center py-4 ">{item.quantity}</td>
-                  <td className="py-4 text-center">
+                  <td className="py-4 text-right">
                     <button
                       onClick={() => removeItemHandler(item.id)}
-                      className="bg-slate-500 py-[0.10rem] px-2 rounded-lg text-slate-100 mx-1"
+                      className="bg-slate-500 py-[0.10rem] px-2 rounded-lg text-slate-100 mr-1"
                     >
                       -
                     </button>
                     <button
                       onClick={() => addItemHandler(item)}
-                      className="bg-slate-500 py-[0.10rem] px-2 rounded-lg text-slate-100 mx-1"
+                      className="bg-slate-500 py-[0.10rem] px-2 rounded-lg text-slate-100 ml-1"
                     >
                       +
                     </button>
@@ -62,7 +62,7 @@ const CartContent = () => {
               );
             })}
             <tr>
-              <td colSpan={3} className="py-2 text-sm font-medium">
+              <td colSpan={3} className="py-2 text-base font-semibold">
                 Subtotal
               </td>
               <td

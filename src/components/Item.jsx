@@ -6,7 +6,7 @@ import { cartActions } from "../store/index";
 import { useDispatch } from "react-redux";
 import { ImSpinner2 } from "react-icons/im";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import HeroHeader from "./UI/HeroHeader";
 
 const Item = () => {
   const params = useParams();
@@ -74,8 +74,9 @@ const Item = () => {
   });
 
   return (
-    <section className="w-full h-screen px-2">
-      <div className="flex w-full flex-col items-center gap-8 mt-10">
+    <section className="w-full lg:h-screen">
+      <HeroHeader />
+      <div className="flex w-full flex-col items-center gap-8 my-10 px-2">
         <h1 className="font-bold text-4xl text-center text-red-600">{name}</h1>
         <form
           onSubmit={formik.handleSubmit}

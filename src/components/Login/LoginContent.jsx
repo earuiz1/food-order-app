@@ -6,6 +6,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import { toast } from "react-toastify";
 import { ImSpinner2 } from "react-icons/im";
+import HeroHeader from "../UI/HeroHeader";
 
 const LoginContent = () => {
   const [loading, setLoading] = useState(false);
@@ -24,8 +25,6 @@ const LoginContent = () => {
 
       /* Getting the user object from the userCredentials object. */
       const user = userCredentials.user;
-
-      console.log(user);
 
       toast.success("Login Successful", {
         position: "bottom-center",
@@ -83,10 +82,11 @@ const LoginContent = () => {
   });
   return (
     <section className="w-full h-screen">
-      <div className="flex flex-col items-center gap-3">
+      <HeroHeader />
+      <div className="flex flex-col items-center gap-3 my-10">
         <form
           onSubmit={formik.handleSubmit}
-          className="flex flex-col min-w-[350px] max-w-[400px] bg-slate-800 shadow-md shadow-slate-400 p-6 rounded-lg gap-6 mt-20"
+          className="flex flex-col min-w-[350px] max-w-[400px] bg-slate-800 shadow-md shadow-slate-400 p-6 rounded-lg gap-6"
         >
           <h1 className="text-slate-100 font-bold text-2xl text-center uppercase">
             Login
