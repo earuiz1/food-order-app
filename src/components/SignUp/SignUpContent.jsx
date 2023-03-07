@@ -15,6 +15,7 @@ const SignUpContent = () => {
   const [loading, setLoading] = useState(false);
   const { currentUser } = useAuth();
   const navigate = useNavigate();
+
   const onSubmit = async (values, actions) => {
     setLoading(true);
     if (!currentUser) {
