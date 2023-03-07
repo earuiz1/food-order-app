@@ -79,7 +79,7 @@ const CartContent = () => {
             Taxes and shipping will added in checkout
           </span>
           <div className="flex flex-col gap-2">
-            <Link>
+            <Link to="../checkout">
               <button className="bg-slate-900 text-slate-100 font-semibold py-2 w-full">
                 Checkout
               </button>
