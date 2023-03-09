@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "yup-phone";
+import InputMask from "react-input-mask";
 
 const CheckoutContent = () => {
   const [loading, setLoading] = useState(false);
@@ -16,7 +17,18 @@ const CheckoutContent = () => {
   const orderTotal = totalPrice + tax;
 
   const onSubmit = (values, actions) => {
-    console.log(values);
+    const unmaskedPhoneNumber = values.phoneNumber.replace(/\D/g, "");
+
+    const newValues = {
+      ...values,
+      phoneNumber: unmaskedPhoneNumber,
+    };
+
+    console.log(newValues);
+
+    actions.resetForm({
+      values: initialValues,
+    });
   };
 
   const initialValues = {
@@ -33,8 +45,10 @@ const CheckoutContent = () => {
   const validationSchema = Yup.object({
     name: Yup.string().required("Name is required!"),
     email: Yup.string().email().required("Email is required!"),
-    phoneNumber: Yup.string().phone(),
-    address: Yup.string().required(),
+    phoneNumber: Yup.string()
+      .phone("Invalid Phone Number")
+      .required("Phone Number is required!"),
+    address: Yup.string().required("Address is required!"),
     state: Yup.string().required("State is required!"),
     city: Yup.string().required("City is required!"),
     zipCode: Yup.string()
@@ -146,7 +160,8 @@ const CheckoutContent = () => {
             >
               Phone Number:
             </label>
-            <input
+            <InputMask
+              mask="(999)-999-9999"
               className="px-2 py-1 rounded-md placeholder:text-sm"
               type="text"
               name="phoneNumber"
