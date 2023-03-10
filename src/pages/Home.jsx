@@ -4,12 +4,10 @@ import { collection, getDocs } from "@firebase/firestore";
 import { json } from "react-router-dom";
 import HeaderMain from "../components/Header/HeaderMain";
 import MenuList from "../components/Menu/MenuList";
-// import Nav from "../components/Nav/Nav";
 
 const Home = () => {
   return (
     <>
-      {/* <Nav /> */}
       <HeaderMain />
       <MenuList />
     </>

@@ -14,4 +14,7 @@ html{
         @apply bg-slate-50;
         
     }
+    input{
+      @apply outline-none rounded-sm focus:border-blue-600 focus:border-2;
+    }
   }

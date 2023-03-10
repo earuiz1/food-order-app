@@ -7,6 +7,8 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import "yup-phone";
 import InputMask from "react-input-mask";
+import Select from "react-select";
+import { US_STATE_LIST } from "../../US_STATE_LIST";
 
 const CheckoutContent = () => {
   const [loading, setLoading] = useState(false);
@@ -45,11 +47,9 @@ const CheckoutContent = () => {
   const validationSchema = Yup.object({
     name: Yup.string().required("Name is required!"),
     email: Yup.string().email().required("Email is required!"),
-    phoneNumber: Yup.string()
-      .phone("Invalid Phone Number")
-      .required("Phone Number is required!"),
+    phoneNumber: Yup.string().phone().required("Phone Number is required!"),
     address: Yup.string().required("Address is required!"),
-    state: Yup.string().required("State is required!"),
+    state: Yup.string().required("Option is required!"),
     city: Yup.string().required("City is required!"),
     zipCode: Yup.string()
       .required("Zip Code is required!")
@@ -64,6 +64,10 @@ const CheckoutContent = () => {
     onSubmit,
   });
 
+  const stateOptions = US_STATE_LIST.map((US_STATE) => ({
+    value: US_STATE.name,
+    label: `${US_STATE.abbreviation} - ${US_STATE.name}`,
+  }));
   return (
     <section className="w-full">
       <HeroHeader />
@@ -119,18 +123,19 @@ const CheckoutContent = () => {
               Name:
             </label>
             <input
-              className="px-2 py-1 rounded-md placeholder:text-sm"
+              className="px-2 py-1 placeholder:text-sm"
               type="name"
               name="name"
               onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               value={formik.values.name}
               placeholder="Enter Name..."
             />
-            {formik.errors.name && (
+            {formik.touched.name && formik.errors.name ? (
               <p className="text-red-700 font-bold text-sm">
                 {formik.errors.name}
               </p>
-            )}
+            ) : null}
           </div>
           <div className="flex flex-col gap-2">
             <label
@@ -140,18 +145,19 @@ const CheckoutContent = () => {
               Email:
             </label>
             <input
-              className="px-2 py-1 rounded-md placeholder:text-sm"
+              className="px-2 py-1 placeholder:text-sm"
               type="email"
               name="email"
               onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               value={formik.values.email}
               placeholder="Enter Email..."
             />
-            {formik.errors.email && (
+            {formik.touched.email && formik.errors.email ? (
               <p className="text-red-700 font-bold text-sm">
                 {formik.errors.email}
               </p>
-            )}
+            ) : null}
           </div>
           <div className="flex flex-col gap-2">
             <label
@@ -162,18 +168,19 @@ const CheckoutContent = () => {
             </label>
             <InputMask
               mask="(999)-999-9999"
-              className="px-2 py-1 rounded-md placeholder:text-sm"
+              className="px-2 py-1 placeholder:text-sm"
               type="text"
               name="phoneNumber"
               onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               value={formik.values.phoneNumber}
               placeholder="Enter Phone Number..."
             />
-            {formik.errors.phoneNumber && (
+            {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
               <p className="text-red-700 font-bold text-sm">
                 {formik.errors.phoneNumber}
               </p>
-            )}
+            ) : null}
           </div>
           <div className="flex flex-col gap-2">
             <label
@@ -183,18 +190,19 @@ const CheckoutContent = () => {
               Address:
             </label>
             <input
-              className="px-2 py-1 rounded-md placeholder:text-sm"
+              className="px-2 py-1 placeholder:text-sm"
               type="text"
               name="address"
               onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               value={formik.values.address}
               placeholder="Enter Street Address..."
             />
-            {formik.errors.address && (
+            {formik.touched.address && formik.errors.address ? (
               <p className="text-red-700 font-bold text-sm">
                 {formik.errors.address}
               </p>
-            )}
+            ) : null}
           </div>
           <div className="flex flex-col gap-2">
             <label
@@ -203,19 +211,22 @@ const CheckoutContent = () => {
             >
               State:
             </label>
-            <input
-              className="px-2 py-1 rounded-md placeholder:text-sm"
-              type="text"
+            <Select
               name="state"
-              onChange={formik.handleChange}
-              value={formik.values.state}
-              placeholder="Enter State..."
+              options={stateOptions}
+              value={stateOptions.find(
+                (option) => option.value === formik.values.state
+              )}
+              onChange={(option) =>
+                formik.setFieldValue("state", option?.value || "")
+              }
+              onBlur={formik.handleBlur}
             />
-            {formik.errors.state && (
+            {formik.touched.state && formik.errors.state ? (
               <p className="text-red-700 font-bold text-sm">
                 {formik.errors.state}
               </p>
-            )}
+            ) : null}
           </div>
           <div className="flex flex-col gap-2">
             <label
@@ -225,18 +236,19 @@ const CheckoutContent = () => {
               City:
             </label>
             <input
-              className="px-2 py-1 rounded-md placeholder:text-sm"
+              className="px-2 py-1 placeholder:text-sm"
               type="text"
               name="city"
               onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               value={formik.values.city}
               placeholder="Enter City..."
             />
-            {formik.errors.city && (
+            {formik.touched.city && formik.errors.city ? (
               <p className="text-red-700 font-bold text-sm">
                 {formik.errors.city}
               </p>
-            )}
+            ) : null}
           </div>
           <div className="flex flex-col gap-2">
             <label
@@ -246,18 +258,19 @@ const CheckoutContent = () => {
               Zip Code:
             </label>
             <input
-              className="px-2 py-1 rounded-md placeholder:text-sm"
+              className="px-2 py-1 placeholder:text-sm"
               type="text"
               name="zipCode"
               onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               value={formik.values.zipCode}
               placeholder="Enter Zip Code..."
             />
-            {formik.errors.zipCode && (
+            {formik.touched.zipCode && formik.errors.zipCode ? (
               <p className="text-red-700 font-bold text-sm">
                 {formik.errors.zipCode}
               </p>
-            )}
+            ) : null}
           </div>
           <button
             type="submit"

@@ -149,18 +149,19 @@ const SignUpContent = () => {
               Name:
             </label>
             <input
-              className="px-2 py-1 rounded-md placeholder:text-sm"
+              className="px-2 py-1 placeholder:text-sm"
               type="text"
               name="name"
               onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               value={formik.values.name}
               placeholder="Enter Full Name..."
             />
-            {formik.errors.name && (
+            {formik.touched.name && formik.errors.name ? (
               <p className="text-red-700 font-bold text-sm">
                 {formik.errors.name}
               </p>
-            )}
+            ) : null}
           </div>
           <div className="flex flex-col gap-2">
             <label
@@ -170,18 +171,19 @@ const SignUpContent = () => {
               Email:
             </label>
             <input
-              className="px-2 py-1 rounded-md placeholder:text-sm"
+              className="px-2 py-1 placeholder:text-sm"
               type="email"
               name="email"
               onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               value={formik.values.email}
               placeholder="Enter Email..."
             />
-            {formik.errors.email && (
+            {formik.touched.email && formik.errors.email ? (
               <p className="text-red-700 font-bold text-sm">
                 {formik.errors.email}
               </p>
-            )}
+            ) : null}
           </div>
           <div className="flex flex-col gap-2">
             <label
@@ -191,18 +193,19 @@ const SignUpContent = () => {
               Password:
             </label>
             <input
-              className="px-2 py-1 rounded-md placeholder:text-sm"
+              className="px-2 py-1 placeholder:text-sm"
               type="password"
               name="password"
               onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               value={formik.values.password}
               placeholder="Enter Password..."
             />
-            {formik.errors.password && (
+            {formik.touched.password && formik.errors.password ? (
               <p className="text-red-700 font-bold text-sm">
                 {formik.errors.password}
               </p>
-            )}
+            ) : null}
           </div>
           <div className="flex flex-col gap-2">
             <label
@@ -212,18 +215,20 @@ const SignUpContent = () => {
               Confirm Password:
             </label>
             <input
-              className="px-2 py-1 rounded-md placeholder:text-sm"
+              className="px-2 py-1 placeholder:text-sm"
               type="password"
               name="confirm_password"
               onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               value={formik.values.confirm_password}
               placeholder="Confirm Password..."
             />
-            {formik.errors.confirm_password && (
+            {formik.touched.confirm_password &&
+            formik.errors.confirm_password ? (
               <p className="text-red-700 font-bold text-sm">
                 {formik.errors.confirm_password}
               </p>
-            )}
+            ) : null}
           </div>
           <button
             type="submit"

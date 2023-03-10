@@ -82,10 +82,10 @@ const Item = () => {
           onSubmit={formik.handleSubmit}
           className="flex flex-col lg:flex-row lg:justify-evenly rounded-lg bg-slate-900 xl:p-5 lg:p-4 p-3 lg:gap-5 gap-3 shadow-md shadow-slate-400  min-w-[320px] max-w-[400px] max-h-[600px] lg:min-w-[80%] mx-auto"
         >
-          <div className="w-full lg:min-w-[30%]">
+          <div className="w-full lg:min-w-[30%] sm:max-h-[200px] md:max-h-[250px]">
             <img
               src={url}
-              className="object-cover bg-center bg-no-repeat rounded-lg"
+              className="h-full object-cover bg-center bg-no-repeat rounded-lg"
               alt=""
             />
           </div>

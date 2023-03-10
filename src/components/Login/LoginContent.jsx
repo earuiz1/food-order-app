@@ -25,6 +25,7 @@ const LoginContent = () => {
 
       /* Getting the user object from the userCredentials object. */
       const user = userCredentials.user;
+      console.log(user);
 
       toast.success("Login Successful", {
         position: "bottom-center",
@@ -99,18 +100,19 @@ const LoginContent = () => {
               Email:
             </label>
             <input
-              className="px-2 py-1 rounded-md placeholder:text-sm"
+              className="px-2 py-1 placeholder:text-sm"
               type="email"
               name="email"
               onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               value={formik.values.email}
               placeholder="Enter Email..."
             />
-            {formik.errors.email && (
+            {formik.touched.email && formik.errors.email ? (
               <p className="text-red-700 font-bold text-sm">
                 {formik.errors.email}
               </p>
-            )}
+            ) : null}
           </div>
           <div className="flex flex-col gap-2">
             <label
@@ -120,18 +122,19 @@ const LoginContent = () => {
               Password:
             </label>
             <input
-              className="px-2 py-1 rounded-md placeholder:text-sm"
+              className="px-2 py-1 placeholder:text-sm"
               type="password"
               name="password"
               onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
               value={formik.values.password}
               placeholder="Enter Password..."
             />
-            {formik.errors.password && (
+            {formik.touched.password && formik.errors.password ? (
               <p className="text-red-700 font-bold text-sm">
                 {formik.errors.password}
               </p>
-            )}
+            ) : null}
           </div>
           <button
             type="submit"
