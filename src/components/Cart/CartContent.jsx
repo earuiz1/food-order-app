@@ -91,13 +91,13 @@ const CartContent = () => {
           <div className="flex flex-col gap-2">
             {!cartIsEmpty && (
               <Link to="../checkout">
-                <button className="bg-slate-900 text-slate-100 font-semibold py-2 w-full">
+                <button className="bg-slate-900 text-slate-100 font-semibold rounded-sm py-2 w-full">
                   Checkout
                 </button>
               </Link>
             )}
             <Link to="..">
-              <button className="bg-slate-900 text-slate-100 font-semibold py-2 w-full">
+              <button className="bg-slate-900 text-slate-100 font-semibold rounded-sm py-2 w-full">
                 Continue Shopping
               </button>
             </Link>
