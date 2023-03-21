@@ -83,7 +83,7 @@ const Nav = () => {
       <div className="lg:hidden flex items-center gap-4">
         <NavCart />
         <GiHamburgerMenu
-          className="text-slate-50"
+          className="text-slate-100 cursor-pointer"
           size={28}
           onClick={openNavMobileHandler}
         />
@@ -120,12 +120,12 @@ const Nav = () => {
         </ul>
       )}
       {navMobile && (
-        <div className="block absolute right-0 top-[7.8vh] h-20 w-[200px] bg-slate-800 border-2 border-slate-50 rounded-lg z-[20]">
+        <div className="block absolute right-0 top-[76px] h-20 w-[200px] bg-slate-800 border-2 border-slate-50 rounded-lg z-[20]">
           <div className="flex flex-col items-center w-full">
             <div className="flex justify-end w-full">
               <IoClose
                 size={22}
-                className="text-slate-100"
+                className="text-slate-100 cursor-pointer"
                 onClick={closeNavMobileHandler}
               />
             </div>

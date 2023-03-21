@@ -33,7 +33,7 @@ const AlternateNav = () => {
     setNavMobile(false);
   };
   return (
-    <div className="bg-slate-900 w-full flex justify-between items-center py-4 px-6">
+    <div className="bg-slate-900 h-20 w-full flex justify-between items-center py-4 px-6">
       <div className="flex items-center gap-2">
         <IoFastFood className="text-slate-50" size={30} />
         <h1 className="text-slate-50 font-bold text-2xl md:text-3xl">

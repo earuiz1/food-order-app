@@ -3,6 +3,7 @@ import HeroHeader from "../UI/HeroHeader";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { cartActions } from "../../store/index";
+import { BiTrash } from "react-icons/bi";
 
 const CartContent = () => {
   const dispatch = useDispatch();
@@ -23,6 +24,10 @@ const CartContent = () => {
     dispatch(cartActions.removeItem(id));
   };
 
+  const removeItemCompletelyHandler = (id) => {
+    dispatch(cartActions.removeItemCompletely(id));
+  };
+
   return (
     <section className="w-full h-screen">
       <HeroHeader />
@@ -30,10 +35,10 @@ const CartContent = () => {
         <table className="table-fixed w-full">
           <thead>
             <tr className="border-b border-slate-400">
-              <th className="text-sm py-2 w-[40%] text-left">Name</th>
+              <th className="text-sm py-2 w-[30%] text-left">Name</th>
               <th className="text-sm py-2 w-[20%]">Price</th>
               <th className="text-sm py-2 w-[20%]">Qty</th>
-              <th className="text-sm py-2 w-[20%] text-right">Actions</th>
+              <th className="text-sm py-2 w-[30%] text-right">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -51,20 +56,26 @@ const CartContent = () => {
               return (
                 <tr className=" border-b border-slate-400" key={item.id}>
                   <td className="text-sm py-4 text-left">{item.name}</td>
-                  <td className="text-sm  text-center py-4 ">${item.price}</td>
+                  <td className="text-sm text-center py-4 ">${item.price}</td>
                   <td className="text-sm text-center py-4 ">{item.quantity}</td>
-                  <td className="py-4 text-right">
+                  <td className="flex justify-end items-center py-4 gap-2">
                     <button
                       onClick={() => removeItemHandler(item.id)}
-                      className="bg-slate-500 py-[0.10rem] px-2 rounded-lg text-slate-100 mr-1"
+                      className="bg-slate-800 py-[0.10rem] px-3 rounded-md text-slate-100"
                     >
                       -
                     </button>
                     <button
                       onClick={() => addItemHandler(item)}
-                      className="bg-slate-500 py-[0.10rem] px-2 rounded-lg text-slate-100 ml-1"
+                      className="bg-slate-800 py-[0.10rem] px-3 rounded-md text-slate-100"
                     >
                       +
+                    </button>
+                    <button
+                      onClick={() => removeItemCompletelyHandler(item.id)}
+                      className="bg-slate-800 py-[0.20rem] px-2 rounded-md text-slate-100 "
+                    >
+                      <BiTrash className="text-slate-50" size={22} />
                     </button>
                   </td>
                 </tr>
@@ -78,7 +89,7 @@ const CartContent = () => {
                 colSpan={1}
                 className="text-red-600 font-bold italic text-base text-right py-2"
               >
-                {cartTotalPrice.toFixed(2)}
+                {+cartTotalPrice.toFixed(2)}
               </td>
             </tr>
           </tbody>
