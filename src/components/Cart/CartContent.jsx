@@ -34,7 +34,7 @@ const CartContent = () => {
       <div className="flex flex-col lg:flex-row lg:items-center lg:gap-4 my-20 px-2">
         <table className="table-fixed w-full">
           <thead>
-            <tr className="border-b border-slate-400">
+            <tr className="border-b border-slate-500">
               <th className="text-sm py-2 w-[30%] text-left">Name</th>
               <th className="text-sm py-2 w-[20%]">Price</th>
               <th className="text-sm py-2 w-[20%]">Qty</th>
